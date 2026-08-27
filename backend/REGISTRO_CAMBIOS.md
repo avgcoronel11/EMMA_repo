@@ -32,6 +32,7 @@ Esta tarea no incluye modelos funcionales, APIs, serializers, permisos de negoci
 - Se valido `python manage.py check` correctamente.
 - Se intento `makemigrations --check --dry-run`, pero Django requiere `DB_NAME` para revisar el historial de migraciones; queda pendiente hasta configurar PostgreSQL real.
 - Se agrego `.gitattributes` en la raiz para normalizar saltos de linea entre Linux y Windows.
+- Se agrego `backend/docs/estructura_backend_django.docx` con la estructura creada y la definicion de cada carpeta y archivo.
 
 ## Decisiones confirmadas
 
