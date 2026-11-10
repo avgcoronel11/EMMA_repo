@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | EMMA{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="page-pretitle">Sesion activa</div>
+      <h1 class="page-title">Inicio</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row row-cards">
+  <div class="col-12">
+    <div class="card emma-home-hero">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="text-secondary mb-2">Bienvenido(a)</div>
+            <h2 class="mb-2">{{ usuario.nombre|default:"Usuario" }}</h2>
+            <p class="mb-0">{{ usuario.correo|default:"Correo no disponible" }}</p>
+            <span class="badge bg-green-lt mt-3">Sesion iniciada con Microsoft Entra ID</span>
+          </div>
+          <div class="col-md-4 text-md-end mt-4 mt-md-0">
+            <div class="text-secondary small">Identificador OID</div>
+            <div class="text-break fw-semibold">{{ usuario.oid|default:"No disponible" }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-3">
+    <a class="card card-link emma-module-card" href="{% url 'riesgos:list' %}">
+      <div class="card-body">
+        <div class="h3 mb-2">Riesgos</div>
+        <p class="text-secondary mb-0">Gestionar matriz y valoracion de riesgos.</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <a class="card card-link emma-module-card" href="{% url 'eventos:list' %}">
+      <div class="card-body">
+        <div class="h3 mb-2">Eventos</div>
+        <p class="text-secondary mb-0">Consultar y registrar eventos operativos.</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <a class="card card-link emma-module-card" href="{% url 'planes:list' %}">
+      <div class="card-body">
+        <div class="h3 mb-2">Planes</div>
+        <p class="text-secondary mb-0">Hacer seguimiento a acciones definidas.</p>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <a class="card card-link emma-module-card" href="{% url 'catalogos:list' %}">
+      <div class="card-body">
+        <div class="h3 mb-2">Catalogos</div>
+        <p class="text-secondary mb-0">Revisar valores maestros del sistema.</p>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}

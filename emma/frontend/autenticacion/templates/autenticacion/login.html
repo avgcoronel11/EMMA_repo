@@ -1,0 +1,57 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iniciar sesion | EMMA</title>
+    <link rel="stylesheet" href="{% static 'vendor/tabler/css/tabler.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}?v=sprint3-login-rwd-5">
+  </head>
+  <body class="emma-login-body">
+    <main class="row g-0 emma-login-layout">
+      <section class="col-12 col-lg-5 col-xl-4 emma-login-left">
+        <div class="emma-login-box">
+          <div class="emma-login-bank">
+            <img src="{% static 'img/banco-popular.png' %}" alt="Banco Popular">
+          </div>
+
+          <div class="emma-login-brand">
+            <img src="{% static 'img/emma-logo.png' %}" alt="EMMA">
+            <div>
+              <div class="emma-login-name">EMMA</div>
+              <div class="emma-login-subtitle">Gestion de riesgo operativo</div>
+            </div>
+          </div>
+
+          <h1>Iniciar sesion</h1>
+          <p class="emma-login-text">Ingresa con tu cuenta corporativa del banco.</p>
+
+          {% if error %}
+            <div class="alert alert-danger" role="alert">{{ error }}</div>
+          {% endif %}
+
+          <a
+            href="{% url 'autenticacion:iniciar_sesion' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}"
+            class="btn btn-microsoft w-100"
+          >
+            <svg width="24" height="24" viewBox="0 0 21 21" class="me-2" aria-hidden="true">
+              <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+              <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+              <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+              <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+            </svg>
+            Iniciar sesion con Microsoft
+          </a>
+        </div>
+      </section>
+
+      <section class="col-12 col-lg-7 col-xl-8 d-none d-lg-flex align-items-center emma-login-panel">
+        <div class="emma-login-panel-content">
+          <h2>Matriz de riesgos, eventos y planes de accion</h2>
+          <p>Un solo lugar para identificar, valorar y hacer seguimiento al riesgo operativo.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

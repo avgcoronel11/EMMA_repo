@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Pagina no encontrada | EMMA{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="page-pretitle">Error 404</div>
+      <h1 class="page-title">Pagina no encontrada</h1>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-danger" role="alert">
+  La pagina solicitada no existe o ya no esta disponible.
+</div>
+
+<a class="btn btn-primary" href="{% url 'inicio' %}">Volver al inicio</a>
+{% endblock %}

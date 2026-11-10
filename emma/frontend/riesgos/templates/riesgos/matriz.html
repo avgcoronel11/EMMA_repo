@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Matriz de Riesgos | EMMA{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="page-pretitle">Gestión operativa</div>
+      <h1 class="page-title">Matriz de Riesgos</h1>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <section id="matriz-riesgos">{% include "riesgos/partials/_matriz_riesgos.html" %}</section>
+    <hr class="my-5">
+    <section id="matriz-causas">{% include "riesgos/partials/_matriz_causas.html" %}</section>
+    <hr class="my-5">
+    <section id="matriz-controles">{% include "riesgos/partials/_matriz_controles.html" %}</section>
+    <hr class="my-5">
+    <section id="matriz-severidad">{% include "riesgos/partials/_matriz_severidad_modulo.html" %}</section>
+  </div>
+</div>
+{% endblock %}

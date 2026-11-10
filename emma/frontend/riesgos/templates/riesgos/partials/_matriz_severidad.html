@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header"><h2 class="card-title">Matriz de Severidad del Riesgo</h2></div>
+  <div class="card-body">
+    {% if matriz_severidad.valida %}
+      <div class="matriz-severidad-leyenda" aria-label="Leyenda de marcadores">
+        <span><span class="matriz-marcador ri">RI</span> Riesgo inherente{% if matriz_severidad.ri.severidad %}: {{ matriz_severidad.ri.severidad }}{% endif %}</span>
+        <span><span class="matriz-marcador rr">RR</span> Riesgo residual{% if matriz_severidad.rr.severidad %}: {{ matriz_severidad.rr.severidad }}{% endif %}</span>
+      </div>
+      <div class="matriz-severidad-contenedor" role="img" aria-label="Matriz de Severidad del Riesgo con Riesgo inherente y Riesgo residual">
+        <div class="matriz-eje-y">Probabilidad</div>
+        <div class="matriz-severidad-cuerpo">
+          <div class="matriz-etiquetas-y">{% for fila in matriz_severidad.filas %}<span>{{ fila.nivel }}. {{ fila.etiqueta }}</span>{% endfor %}</div>
+          <div class="matriz-cuadricula">
+            {% for fila in matriz_severidad.filas %}{% for celda in fila.celdas %}
+              <div class="matriz-celda" style="background-color: {{ celda.color }};" aria-label="Probabilidad {{ celda.probabilidad }}, impacto {{ celda.impacto }}">
+                {% for marcador in celda.marcadores %}<span class="matriz-marcador {{ marcador.clase }}" title="{{ marcador.descripcion }}">{{ marcador.codigo }}</span>{% endfor %}
+              </div>
+            {% endfor %}{% endfor %}
+          </div>
+          <div class="matriz-etiquetas-x">{% for impacto in matriz_severidad.impactos %}<span>{{ impacto.nivel }}. {{ impacto.etiqueta }}</span>{% endfor %}</div>
+          <div class="matriz-eje-x">Impacto</div>
+        </div>
+      </div>
+    {% else %}
+      <p class="text-secondary mb-0">Riesgo pendiente de valoración. Se requieren los niveles vigentes de probabilidad e impacto inherente y residual.</p>
+    {% endif %}
+  </div>
+</div>

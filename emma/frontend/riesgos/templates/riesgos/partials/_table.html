@@ -1,0 +1,42 @@
+<div id="riesgos-table" class="card">
+  {% include "components/alerts.html" %}
+  <div class="table-responsive">
+    <table class="table table-vcenter card-table">
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Homologado</th>
+          <th>Estado</th>
+          <th>Severidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for riesgo in riesgos %}
+          <tr>
+            <td class="text-nowrap">
+              {% if riesgo.riesgo_id %}<a class="fw-medium" data-riesgos-loading href="{% url 'riesgos:detail' riesgo.riesgo_id %}">{{ riesgo.codigo_riesgo }}</a>{% else %}<span class="fw-medium">{{ riesgo.codigo_riesgo }}</span>{% endif %}
+            </td>
+            <td>{{ riesgo.nombre_riesgo }}</td>
+            <td>{{ riesgo.riesgo_homologado|default:"-" }}</td>
+            <td>
+              <span class="badge bg-blue-lt">{{ riesgo.estado|default:"-" }}</span>
+            </td>
+            <td>{{ riesgo.severidad_inherente|default:"-" }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5" class="text-secondary">No hay riesgos para mostrar.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <span class="text-secondary">{{ count }} resultado{{ count|pluralize:"s" }}</span>
+    <div class="btn-list">
+      {% if previous_page %}<a class="btn btn-outline-secondary" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ previous_page }}">Anterior</a>{% endif %}
+      {% if next_page %}<a class="btn btn-outline-secondary" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ next_page }}">Siguiente</a>{% endif %}
+    </div>
+  </div>
+</div>

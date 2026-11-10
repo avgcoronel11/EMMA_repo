@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-09-14T20:41:07.895591+00:00",
+  "origen": "Archivos",
+  "version": "2026.1",
+  "vigencia": "2026-09-14",
+  "dry_run": true,
+  "results": [
+    {
+      "source": "CLASIFICACIONES",
+      "filename": "Archivos/Clasificaciones.xlsx",
+      "hash": "878787c6db4905c88cdb5c72f2be1454162f4ad47cf3c440391d708bdd0ba9cd",
+      "status": "EXITOSA",
+      "read": 1323,
+      "valid": 1323,
+      "rejected": 0,
+      "created": 1284,
+      "updated": 0,
+      "inactivated": 0,
+      "warnings": [
+        "Clasificaciones contiene codigos de riesgo generico no activos en RIESGO_GENERICO: ['R1', 'R10', 'R11', 'R12', 'R13', 'R14', 'R15', 'R16', 'R18', 'R19', 'R2', 'R20', 'R21', 'R23', 'R26', 'R28', 'R29', 'R30', 'R31', 'R32'] ..."
+      ],
+      "details": {
+        "cuentas_desde_clasificaciones": 58
+      }
+    }
+  ]
+}

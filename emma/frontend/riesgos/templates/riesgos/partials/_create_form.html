@@ -1,0 +1,119 @@
+<form
+  class="card"
+  method="post"
+  action="{% url 'riesgos:create' %}"
+  hx-post="{% url 'riesgos:create' %}"
+  hx-target="#riesgos-workspace"
+  hx-swap="outerHTML"
+  hx-indicator="#riesgos-loading"
+>
+  {% csrf_token %}
+  <div class="card-header">
+    <h2 class="card-title">Crear riesgo</h2>
+  </div>
+  <div class="card-body">
+    {% if create_form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+        {% for error in create_form.non_field_errors %}
+          <div>{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ create_form.nombre_riesgo.id_for_label }}">{{ create_form.nombre_riesgo.label }}</label>
+      {{ create_form.nombre_riesgo }}
+      {% for error in create_form.nombre_riesgo.errors %}
+        <div class="invalid-feedback d-block">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="mb-3"><label class="form-label">{{ create_form.frente_riesgo_asociado.label }}</label><details class="emma-multi-select" data-multi-select><summary><span data-multi-select-summary>Seleccione uno o varios</span></summary><div class="emma-multi-select-options">{% for value, label in create_form.frente_riesgo_asociado.field.choices %}<label><input type="checkbox" name="{{ create_form.frente_riesgo_asociado.html_name }}" value="{{ value }}"{% if value in create_form.frente_riesgo_asociado.value %} checked{% endif %} data-multi-select-option onchange="actualizarResumenMultiseleccion(this)"> <span>{{ label }}</span></label>{% endfor %}</div></details></div>
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3"><label class="form-label" for="{{ create_form.control_cambios.id_for_label }}">{{ create_form.control_cambios.label }}</label>{{ create_form.control_cambios }}</div>
+      <div class="col-12 col-md-6 mb-3"><label class="form-label" for="{{ create_form.frecuencia.id_for_label }}">{{ create_form.frecuencia.label }}</label>{{ create_form.frecuencia }}</div>
+    </div>
+    <div class="mb-3"><label class="form-label" for="{{ create_form.detalle_frecuencia.id_for_label }}">{{ create_form.detalle_frecuencia.label }}</label>{{ create_form.detalle_frecuencia }}{% for error in create_form.detalle_frecuencia.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}</div>
+    <div class="mb-3"><label class="form-label">{{ create_form.checklist_riesgo.label }}</label><details class="emma-multi-select" data-multi-select><summary><span data-multi-select-summary>Seleccione uno o varios</span></summary><div class="emma-multi-select-options">{% for value, label in create_form.checklist_riesgo.field.choices %}<label><input type="checkbox" name="{{ create_form.checklist_riesgo.html_name }}" value="{{ value }}"{% if value in create_form.checklist_riesgo.value %} checked{% endif %} data-multi-select-option onchange="actualizarResumenMultiseleccion(this)"> <span>{{ label }}</span></label>{% endfor %}</div></details></div>
+    <div class="mb-3"><label class="form-label">{{ create_form.factor_riesgo_tipo_evento.label }}</label><details class="emma-multi-select" data-multi-select><summary><span data-multi-select-summary>Seleccione uno o varios</span></summary><div class="emma-multi-select-options">{% for value, label in create_form.factor_riesgo_tipo_evento.field.choices %}<label><input type="checkbox" name="{{ create_form.factor_riesgo_tipo_evento.html_name }}" value="{{ value }}"{% if value in create_form.factor_riesgo_tipo_evento.value %} checked{% endif %} data-multi-select-option onchange="actualizarResumenMultiseleccion(this)"> <span>{{ label }}</span></label>{% endfor %}</div></details>{% for error in create_form.factor_riesgo_tipo_evento.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}</div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3">
+        <label class="form-label" for="{{ create_form.estado.id_for_label }}">{{ create_form.estado.label }}</label>
+        {{ create_form.estado }}
+        {% for error in create_form.estado.errors %}
+          <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+        <label class="form-label" for="{{ create_form.subfactor_riesgo.id_for_label }}">{{ create_form.subfactor_riesgo.label }}</label>
+        {{ create_form.subfactor_riesgo }}
+        {% for error in create_form.subfactor_riesgo.errors %}
+          <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ create_form.riesgo_homologado.id_for_label }}">{{ create_form.riesgo_homologado.label }}</label>
+      {{ create_form.riesgo_homologado }}
+      {% for error in create_form.riesgo_homologado.errors %}
+        <div class="invalid-feedback d-block">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      <div class="col-12 mb-3"><label class="form-label" for="{{ create_form.vicepresidencia.id_for_label }}">{{ create_form.vicepresidencia.label }}</label>{{ create_form.vicepresidencia }}</div>
+      <div class="col-12 col-md-6 mb-3"><label class="form-label" for="{{ create_form.proceso_nivel0.id_for_label }}">{{ create_form.proceso_nivel0.label }}</label>{{ create_form.proceso_nivel0 }}</div>
+      <div class="col-12 col-md-6 mb-3"><label class="form-label" for="{{ create_form.proceso_ids.id_for_label }}">{{ create_form.proceso_ids.label }}</label>{{ create_form.proceso_ids }}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 mb-3">
+        <label class="form-label" for="{{ create_form.linea.id_for_label }}">{{ create_form.linea.label }}</label>
+        {{ create_form.linea }}
+        {% for error in create_form.linea.errors %}
+          <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+      </div>
+      <div class="col-12 col-md-6 mb-3">
+        <label class="form-label" for="{{ create_form.macroproceso.id_for_label }}">{{ create_form.macroproceso.label }}</label>
+        {{ create_form.macroproceso }}
+        {% for error in create_form.macroproceso.errors %}
+          <div class="invalid-feedback d-block">{{ error }}</div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="{{ create_form.dueno_proceso.id_for_label }}">{{ create_form.dueno_proceso.label }}</label>
+      {{ create_form.dueno_proceso }}
+      {% for error in create_form.dueno_proceso.errors %}
+        <div class="invalid-feedback d-block">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="mb-0">
+      <label class="form-label" for="{{ create_form.comentario_ultima_edicion.id_for_label }}">{{ create_form.comentario_ultima_edicion.label }}</label>
+      {{ create_form.comentario_ultima_edicion }}
+      {% for error in create_form.comentario_ultima_edicion.errors %}
+        <div class="invalid-feedback d-block">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <hr>
+    <h3 class="card-title">Valoración inherente (opcional)</h3>
+    <p class="text-secondary">Las opciones provienen de la configuración vigente del backend. Al diligenciar esta sección se deben completar todos los campos.</p>
+    {{ create_form.valoracion_version }}
+    <div class="row">
+      {% for field in create_form %}
+        {% if field.name == "exposicion" or field.name == "complejidad" or field.name == "condiciones_entorno" or field.name == "grado_ocurrencia" or field.name == "eventos_riesgo" or field.name == "poblacion_expuesta" or field.name == "impacto_legal" or field.name == "impacto_reputacional" or field.name == "impacto_servicio_cliente" or field.name == "impacto_informacion" or field.name == "impacto_continuidad" or field.name == "impacto_contagio" or field.name == "impacto_financiero" %}
+          <div class="col-12 col-md-6 mb-3"><label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-end">
+    <button class="btn btn-primary" type="submit">Crear</button>
+  </div>
+</form>

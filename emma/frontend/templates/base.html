@@ -1,0 +1,75 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}EMMA{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'vendor/tabler/css/tabler.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}?v=matriz-severidad-1">
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body class="emma-app-body">
+    <div class="page emma-app-shell">
+      <aside class="navbar navbar-vertical navbar-expand-lg emma-sidebar" data-bs-theme="dark">
+        <div class="container-fluid">
+          <h1 class="navbar-brand navbar-brand-autodark emma-sidebar-brand">
+            <a href="{% url 'inicio' %}">
+              <img src="{% static 'img/emma-logo.png' %}" alt="EMMA">
+              <span>EMMA</span>
+            </a>
+          </h1>
+          <div class="collapse navbar-collapse show">
+            <ul class="navbar-nav pt-lg-3">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'riesgos:list' %}">
+                  <span class="nav-link-title">Matriz de Riesgos</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'eventos:list' %}">
+                  <span class="nav-link-title">Eventos</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'planes:list' %}">
+                  <span class="nav-link-title">Planes</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'catalogos:list' %}">
+                  <span class="nav-link-title">Catalogos</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <div class="page-wrapper emma-page-wrapper">
+        <header class="navbar navbar-expand-md d-print-none emma-topbar">
+          <div class="container-fluid emma-page-container">
+            <div class="navbar-nav flex-row ms-auto">
+              <span class="nav-link text-secondary">
+                {{ request.session.usuario.nombre|default:"Frontend" }}
+              </span>
+              <a class="nav-link" href="{% url 'autenticacion:logout' %}">Cerrar sesion</a>
+            </div>
+          </div>
+        </header>
+        <main class="page-body emma-page-body">
+          <div class="container-fluid emma-page-container">
+            {% block content %}{% endblock %}
+          </div>
+        </main>
+      </div>
+    </div>
+
+    {% include "components/modal.html" %}
+    <script src="{% static 'vendor/htmx/htmx.min.js' %}"></script>
+    <script src="{% static 'vendor/tabler/js/tabler.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}?v=estructura-procesos-5"></script>
+    <script src="{% static 'js/charts.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

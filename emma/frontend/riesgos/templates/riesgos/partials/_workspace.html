@@ -1,0 +1,16 @@
+<div id="riesgos-workspace">
+  <div id="riesgos-loading" class="riesgos-loading htmx-indicator" role="status" aria-live="polite">
+    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Cargando riesgos...
+  </div>
+  {% include "components/alerts.html" %}
+
+  <div class="row row-cards align-items-start">
+    <div class="col-12 col-xl-4">
+      {% include "riesgos/partials/_create_form.html" %}
+    </div>
+    <div class="col-12 col-xl-8">
+      {% include "riesgos/partials/_filters.html" %}
+      {% include "riesgos/partials/_table.html" %}
+    </div>
+  </div>
+</div>

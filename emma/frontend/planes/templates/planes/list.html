@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Planes | EMMA{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="page-pretitle">Remediacion</div>
+      <h1 class="page-title">Planes</h1>
+    </div>
+  </div>
+</div>
+
+{% include "components/alerts.html" %}
+
+{% include "components/table.html" with rows=planes empty_message="No hay planes para mostrar." %}
+{% endblock %}
+

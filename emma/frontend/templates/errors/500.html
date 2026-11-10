@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Error inesperado | EMMA{% endblock %}
+
+{% block content %}
+<div class="page-header d-print-none">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="page-pretitle">Error 500</div>
+      <h1 class="page-title">Ocurrio un error inesperado</h1>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-danger" role="alert">
+  No fue posible completar la solicitud. Intenta nuevamente o reporta el caso con el equipo de soporte.
+</div>
+
+<a class="btn btn-primary" href="{% url 'inicio' %}">Volver al inicio</a>
+{% endblock %}

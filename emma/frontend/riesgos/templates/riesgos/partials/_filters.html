@@ -1,0 +1,31 @@
+<form
+  class="card mb-3"
+  method="get"
+  action="{% url 'riesgos:table' %}"
+  hx-get="{% url 'riesgos:table' %}"
+  hx-target="#riesgos-table"
+  hx-swap="outerHTML"
+  hx-indicator="#riesgos-loading"
+  hx-trigger="submit, keyup changed delay:400ms from:input, change from:select"
+>
+  <div class="card-body">
+    <div class="row g-3 align-items-end">
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="{{ filter_form.search.id_for_label }}">{{ filter_form.search.label }}</label>
+        {{ filter_form.search }}
+      </div>
+      <div class="col-12 col-md-3">
+        <label class="form-label" for="{{ filter_form.estado.id_for_label }}">{{ filter_form.estado.label }}</label>
+        {{ filter_form.estado }}
+      </div>
+      <div class="col-12 col-md-3"><label class="form-label">Código GR</label>{{ filter_form.codigo_riesgo }}</div>
+      <div class="col-12 col-md-6"><label class="form-label">Riesgo homologado</label>{{ filter_form.riesgo_homologado }}</div>
+      <div class="col-12 col-md-6"><label class="form-label">Vicepresidencia</label>{{ filter_form.vicepresidencia }}</div>
+      <div class="col-12 col-md-4"><label class="form-label">Proceso</label>{{ filter_form.proceso }}</div>
+      <div class="col-12 col-md-4"><label class="form-label">Subproceso</label>{{ filter_form.subproceso }}</div>
+      <div class="col-12 col-md-4"><label class="form-label">Línea</label>{{ filter_form.linea }}</div>
+      <div class="col-12 col-md-6"><label class="form-label">Macroproceso</label>{{ filter_form.macroproceso }}</div>
+      <div class="col-12 col-md-6"><label class="form-label">Dueño del proceso</label>{{ filter_form.dueno_proceso }}</div>
+    </div>
+  </div>
+</form>

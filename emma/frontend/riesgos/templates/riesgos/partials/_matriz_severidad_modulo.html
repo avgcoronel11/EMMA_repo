@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between mb-3"><h2 class="h3 mb-0">4. Matriz de Severidad del Riesgo</h2></div>
+<form class="row g-2 align-items-end mb-3" method="get" action="{% url 'riesgos:list' %}" hx-get="{% url 'riesgos:matriz-severidad' %}" hx-target="#matriz-severidad-panel" hx-swap="innerHTML">
+  <div class="col-12 col-md-8">
+    <label class="form-label" for="matriz-riesgo-id">Seleccione el riesgo a visualizar</label>
+    <select class="form-select" id="matriz-riesgo-id" name="riesgo_id">
+      <option value="">Seleccione...</option>
+      {% for riesgo_opcion in riesgos_opciones_matriz %}<option value="{{ riesgo_opcion.riesgo_id }}"{% if matriz_riesgo.riesgo_id == riesgo_opcion.riesgo_id %} selected{% endif %}>{{ riesgo_opcion.codigo_riesgo }} — {{ riesgo_opcion.nombre_riesgo }}</option>{% endfor %}
+    </select>
+  </div>
+  <div class="col-12 col-md-auto"><button class="btn btn-primary" type="submit">Ver matriz</button></div>
+</form>
+<div id="matriz-severidad-panel">{% include "riesgos/partials/_matriz_severidad_panel.html" %}</div>

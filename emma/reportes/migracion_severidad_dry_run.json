@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-09-14T20:48:58.077652+00:00",
+  "origen": "Archivos",
+  "version": "2026.1",
+  "vigencia": "2026-09-14",
+  "dry_run": true,
+  "results": [
+    {
+      "source": "CFG_SEVERIDAD",
+      "filename": "Archivos/Nivel de Severidad Inherente Riesgo.xlsx",
+      "hash": "89eea5d9fd69b71b0c7284419aee95cb217ff9326dd5d45bf93c617733548cf0",
+      "status": "EXITOSA",
+      "read": 25,
+      "valid": 25,
+      "rejected": 0,
+      "created": 25,
+      "updated": 0,
+      "inactivated": 0,
+      "warnings": [],
+      "details": {}
+    }
+  ]
+}

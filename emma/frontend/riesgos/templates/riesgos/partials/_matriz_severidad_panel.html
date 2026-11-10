@@ -1,0 +1,1 @@
+{% if matriz_alert %}<div class="alert alert-{{ matriz_alert.level }}">{{ matriz_alert.message }}</div>{% elif matriz_riesgo %}{% include "riesgos/partials/_matriz_severidad.html" %}{% else %}<p class="text-secondary mb-0">Seleccione un riesgo para visualizar su valoración inherente y residual vigente.</p>{% endif %}
